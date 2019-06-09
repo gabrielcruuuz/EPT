@@ -4,7 +4,7 @@ Projeto de TCC - Universidade Anhembi Morumbi
 O projeto foi desenvolvido utilizando a linguagem de programção C# juntamente com o .NET Framework e banco de dados SQL Server
 
 Requerimentos para rodar o sistema: 
-Visual Studio
+Visual Studio,
 SQL Server
 
 Guia de como rodar a aplicação:
