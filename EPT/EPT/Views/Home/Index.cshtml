@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="margin-top: 5%;">
+    <div class="col-md-12">
+        <div id="graficoInicial" style="width:100%; height:400px;"></div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("ExportarNotas", "Home", FormMethod.Get))
+{
+    <button id="ExportarPlanilha" type="submit" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-download"></span> Download
+    </button>
+}
+
+
+    <script type="text/javascript">
+
+
+
+
+Highcharts.chart('graficoInicial', {
+
+    title: {
+        text: 'Acertos Teste de Progresso'
+    },
+
+    xAxis: {
+        title: {
+            text: 'Semestre'
+        },
+        categories: ["1º", "2º","3º","4º","5º","6º","7º","8º"],
+    },
+
+    yAxis: {
+        title: {
+            text: 'Acertos'
+        },
+         plotLines: [{
+             value: 15,
+             color: 'red',
+             width: 2,
+             label: {
+                 text: 'Acertos Esperados'
+             }
+        }],
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    series: [{
+        name: 'Seus acertos',
+        data: [@ViewBag.Nota]
+    }, {
+            name: 'Acertos esperado',
+            data: [15,15,15,15,15,15,15,15]
+        }],
+    });
+
+    </script>

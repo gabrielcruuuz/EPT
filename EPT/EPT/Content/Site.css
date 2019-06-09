@@ -1,0 +1,235 @@
+﻿/* ******************************** TELA LOGIN ******************************** */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.img-login {
+    width: 350px;
+    height: 80px;
+    position: relative;
+    margin-top: 4%;
+    left: 37%;
+    margin-bottom: 4%;
+}
+
+.login-page {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    margin-top: -80px !important;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+    .form input {
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: #f2f2f2;
+        width: 100%;
+        border: 0;
+        margin: 0 0 15px;
+        padding: 15px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+    .form button {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background: #04B4AE;
+        width: 100%;
+        border: 0;
+        padding: 15px;
+        color: #FFFFFF;
+        font-size: 14px;
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;
+    }
+
+        .form button:hover, .form button:active, .form button:focus {
+            background: #0B614B;
+        }
+
+    .form .message {
+        margin: 15px 0 0;
+        color: black;
+        font-size: 15px;
+    }
+
+        .form .message a {
+            color: #04B4AE;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .form .message a:hover {
+                color: #0B615E;
+            }
+
+    .form .register-form {
+        display: none;
+    }
+
+.login {
+    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+    background: -moz-linear-gradient(right, #76b852, #8DC26F);
+    background: -o-linear-gradient(right, #76b852, #8DC26F);
+    background: linear-gradient(to left, #00ac8d, #0B614B);
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* ******************************HOME PAGE ************************************** */
+
+.filtros {
+    margin-top: 2%;
+}
+
+
+/* ********************************* MENU ********************* */
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
+
+#infos-usuario {
+    position: relative;
+    z-index: 1000;
+    padding: 10px 10px 10px 0px;
+    background-color: #47c9af;
+    color: black;
+    border-radius: 20px;
+    float: right;
+    margin-top: -5%;
+    margin-right: 4%;
+}
+
+#menu,
+#menu ul,
+#menu ul li,
+#menu ul li a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    line-height: 2;
+    display: block;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    #menu:after,
+    #menu > ul:after {
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+    }
+
+#menu {
+    width: 88%;
+    border-bottom: 3px solid #47c9af;
+    font-family: Raleway, sans-serif;
+    line-height: 1;
+    margin-left: 170px;
+}
+
+    #menu ul {
+        background: #ffffff;
+    }
+
+    #menu > ul > li {
+        float: left;
+    }
+
+    #menu.align-center > ul {
+        font-size: 0;
+        text-align: center;
+    }
+
+        #menu.align-center > ul > li {
+            display: inline-block;
+            float: none;
+        }
+
+    #menu.align-right > ul > li {
+        float: right;
+    }
+
+        #menu.align-right > ul > li > a {
+            margin-right: 0;
+            margin-left: -4px;
+        }
+
+    #menu > ul > li > a {
+        z-index: 2;
+        padding: 18px 25px 12px 25px;
+        font-size: 15px;
+        font-weight: 400;
+        text-decoration: none;
+        color: #444444;
+        -webkit-transition: all .2s ease;
+        -moz-transition: all .2s ease;
+        -ms-transition: all .2s ease;
+        -o-transition: all .2s ease;
+        transition: all .2s ease;
+        margin-right: -4px;
+    }
+
+        #menu > ul > li.active > a,
+        #menu > ul > li:hover > a,
+        #menu > ul > li > a:hover {
+            color: #ffffff;
+        }
+
+        #menu > ul > li > a:after {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+            width: 100%;
+            height: 120%;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            content: "";
+            -webkit-transition: all .2s ease;
+            -o-transition: all .2s ease;
+            transition: all .2s ease;
+            -webkit-transform: perspective(5px) rotateX(2deg);
+            -webkit-transform-origin: bottom;
+            -moz-transform: perspective(5px) rotateX(2deg);
+            -moz-transform-origin: bottom;
+            transform: perspective(5px) rotateX(2deg);
+            transform-origin: bottom;
+        }
+
+        #menu > ul > li.active > a:after,
+        #menu > ul > li:hover > a:after,
+        #menu > ul > li > a:hover:after {
+            background: #47c9af;
+        }
+
+.logoMenu {
+    width: 250px;
+    height: 65px;
+    border-radius: 10px;
+    margin-top: -64px !important;
+    margin-left: -100px;
+    top: 80PX;
+    position: absolute;
+}

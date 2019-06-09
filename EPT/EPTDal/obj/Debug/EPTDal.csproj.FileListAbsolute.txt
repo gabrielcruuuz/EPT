@@ -1,0 +1,9 @@
+C:\Users\gabri\source\repos\EPT\EPTDal\bin\Debug\EPTDal.dll
+C:\Users\gabri\source\repos\EPT\EPTDal\bin\Debug\EPTDal.pdb
+C:\Users\gabri\source\repos\EPT\EPTDal\bin\Debug\EPTEntity.dll
+C:\Users\gabri\source\repos\EPT\EPTDal\bin\Debug\EPTEntity.pdb
+C:\Users\gabri\source\repos\EPT\EPTDal\obj\Debug\EPTDal.csprojAssemblyReference.cache
+C:\Users\gabri\source\repos\EPT\EPTDal\obj\Debug\EPTDal.csproj.CoreCompileInputs.cache
+C:\Users\gabri\source\repos\EPT\EPTDal\obj\Debug\EPTDal.csproj.CopyComplete
+C:\Users\gabri\source\repos\EPT\EPTDal\obj\Debug\EPTDal.dll
+C:\Users\gabri\source\repos\EPT\EPTDal\obj\Debug\EPTDal.pdb

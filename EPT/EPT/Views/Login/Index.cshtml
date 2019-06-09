@@ -1,0 +1,46 @@
+﻿@model EPTEntity.Usuario
+
+@{
+    Layout = null;
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/BundlesJS")
+}
+
+<!DOCTYPE html>
+
+<head>
+    <title>Login</title>
+</head>
+<body class="login">
+
+    <div style="width:1000px; height: 40px;"> 
+        <img src="~/Content/imagens/Capturar.PNG" />
+
+    </div>
+
+    <div style="margin-left: 700px;">
+        <img class="img-login" src="~/Content/imagens/uam.png" />
+    </div>
+
+   
+
+    <div class="login-page" style="margin-left: 950px;">
+        <div class="form">
+
+            @{
+                if (ViewBag.SemPermissao != null)
+                {
+                    <h4 style="color:red;">@ViewBag.SemPermissao</h4>
+                }
+            }
+
+            @using (Html.BeginForm("Entrar", "Login", FormMethod.Post, new { @class = "login-form" }))
+            {
+                @Html.TextBoxFor(u => u.RA, new { placeholder = "RA" })
+                @Html.TextBoxFor(u => u.Senha, new { placeholder = "Senha", @type = "password" })
+                <button type="submit">login</button>
+            }
+        </div>
+    </div>
+</body>
+

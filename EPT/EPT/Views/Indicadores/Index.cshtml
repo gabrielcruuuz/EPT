@@ -1,0 +1,268 @@
+﻿
+@{
+    ViewBag.Title = "Indicadores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model EPTEntity.Filtro
+
+
+<div class="row" style="margin-bottom: 60px; margin-top: 3%;">
+    @using (Html.BeginForm("FiltrarIndicadores", "Indicadores", new { filtroCurso = 1 }, FormMethod.Post, null))
+    {
+
+        int tipoPerfilUsuario = ((EPTEntity.Usuario)HttpContext.Current.Session["Usuario"]).tipoPerfil;
+
+        if (tipoPerfilUsuario != 1)
+        {
+            <div class="col-md-3 filtros ">
+                <div class="form-group">
+                    <div style="width: 100%; height: 35px;" id="sel1">
+                        <label for="sel1">Curso:</label>
+                        @Html.DropDownListFor(m => m.idCurso, new SelectList(ViewBag.listaCursos, "Value", "Text"), new { @id = "filtroCurso", @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-1 filtros ">
+                <div class="form-group">
+                    <div style="width: 100%; height: 35px;" id="sel1">
+                        <label for="sel1">Semestre:</label>
+                        @Html.DropDownListFor(m => m.Semestre, Enumerable.Empty<SelectListItem>(), new { @id = "filtroSemestre", @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 filtros ">
+                <div class="form-group">
+                    <div style="width: 100%; height: 35px;" id="sel1">
+                        <label for="sel1">Turma:</label>
+                        @Html.DropDownListFor(m => m.idTurma, Enumerable.Empty<SelectListItem>(), new { @id = "filtroTurma", @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5" style="margin-top: 45px;">
+                <button id="filtrar" type="submit" class="btn btn-primary">Filtrar</button>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-3 filtros ">
+                <div class="form-group">
+                    <div style="width: 100%; height: 35px;" id="sel1">
+                        <label for="sel1">Turma:</label>
+                        @Html.DropDownListFor(m => m.idTurma, new SelectList(ViewBag.listaTurmas, "Value", "Text"), new { @id = "filtroTurma", @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5" style="margin-top: 45px;">
+                <button id="filtrar" type="submit" class="btn btn-primary">Filtrar</button>
+            </div>
+        }
+    }
+</div>
+
+@{
+    int tipoPerfil = ((EPTEntity.Usuario)HttpContext.Current.Session["Usuario"]).tipoPerfil;
+
+    string graficoAluno = "block";
+    string graficoNaoAluno = "none";
+
+
+    if (tipoPerfil != 1)
+    {
+        graficoAluno = "none";
+        graficoNaoAluno = "block";
+
+    }
+
+    <div class="row" style="margin-bottom: 40px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-7">
+            <h4>Curso : <strong>@ViewBag.NomeCurso</strong></h4>
+        </div>
+        <div class="col-md-4">
+            <h4>Turma : <strong>@ViewBag.NomeTurma</strong></h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" style="display:@graficoAluno;">
+            <div id="graficoBarrasAluno" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        </div>
+    </div>
+
+    if (tipoPerfil == 1)
+    {
+      
+        <button id="ExportarPlanilha" type="submit" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-download"></span> Download
+        </button>
+        
+    }
+
+    <div class="row">
+        <div class="col-md-12" style="display:@graficoNaoAluno;">
+            <div id="graficoBarras" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        </div>
+    </div>
+
+    if (tipoPerfil != 1)
+    {
+      
+        <button id="ExportarPlanilha" type="submit" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-download"></span> Download
+        </button>
+        
+    }
+
+}
+
+
+<script type="text/javascript">
+
+    var _idCursoGlobal;
+    var _idTurmaGlobal;
+
+    $(document).ready(function () {
+        _idCursoGlobal = $('#filtroCurso').val();
+        $.ajax({
+            url: '@Url.Action("GetSemestre")' + '?Idcurso=' + _idCursoGlobal,
+            success: function (data) {
+                $('#filtroSemestre').html('');
+                $('#filtroSemestre').append('<option value>Selecione...</option>');
+                $('#filtroTurma').html('');
+                $('#filtroTurma').append('<option value>Selecione...</option>');
+                $.each(data, function (index, element) {
+                    $('#filtroSemestre').append('<option value = "' + element.semestre + '">' + element.semestre + 'º </option>');
+                });
+            }
+        });
+    });
+
+    $('#filtroCurso').change(function () {
+        _idCursoGlobal = this.value;
+        var opcoes = $(this);
+
+        $.ajax({
+            url: '@Url.Action("GetSemestre")' + '?Idcurso=' + _idCursoGlobal,
+            success: function (data) {
+                $('#filtroSemestre').html('');
+                $('#filtroSemestre').append('<option value>Selecione...</option>');
+                $('#filtroTurma').html('');
+                $('#filtroTurma').append('<option value>Selecione...</option>');
+                $.each(data, function (index, element) {
+                    $('#filtroSemestre').append('<option value = "' + element.semestre + '">' + element.semestre + 'º </option>');
+                });
+            }
+        });
+    });
+
+    
+    $('#ExportarPlanilha').click(function () {
+
+        var idTurma = $('#filtroTurma').val();
+        var idCurso = $('#filtroCurso').val();
+        var semestre = $('#filtroSemestre').val();
+
+        window.location = '/Indicadores/ExportarNotasIndicadores?IdTurma=' + idTurma + '&idCurso=' + idCurso + '&Semestre=' + semestre;
+    });
+
+    $('#filtroSemestre').change(function () {
+
+        var Semestre = this.value;
+        var idCurso = _idCursoGlobal;
+
+         $.ajax({
+             url: '@Url.Action("GetTurmasSemestre")',
+             data: { idCurso: idCurso, Semestre: Semestre },
+            success: function (data) {
+                $('#filtroTurma').html('');
+                $('#filtroTurma').append('<option value>Selecione...</option>');
+                $.each(data, function (index, element) {
+                    $('#filtroTurma').append('<option value = "' + element.id + '">' + element.Nome + '</option>');
+                });
+            }
+        });
+    });
+
+    Highcharts.chart('graficoBarras', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Acertos'
+        },
+
+        xAxis: {
+            title: {
+                text: 'Semestre'
+            },
+            categories: ["1º", "2º", "3º", "4º", "5º", "6º", "7º", "8º"],
+        },
+
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y}'
+                }
+            }
+        },
+        series: [{
+            name: 'Média Acertos turma',
+            data: [@ViewBag.notaTurma]
+        }, {
+            name: 'Média Acertos Curso',
+            data: [@ViewBag.notaCurso]
+        }]
+    });
+
+
+     Highcharts.chart('graficoBarrasAluno', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Acertos'
+        },
+
+        xAxis: {
+            title: {
+                text: 'Semestre'
+            },
+            categories: ["1º", "2º", "3º", "4º", "5º", "6º", "7º", "8º"],
+        },
+
+        credits: {
+            enabled: false
+         },
+         plotOptions: {
+             series: {
+                 borderWidth: 0,
+                 dataLabels: {
+                     enabled: true,
+                     format: '{point.y}'
+                 }
+             }
+         },
+        series: [{
+            name: 'Meus acertos',
+            data: [@ViewBag.Nota]
+        }, {
+            name: 'Média Acertos turma',
+            data: [@ViewBag.notaTurma]
+        }, {
+            name: 'Média Acertos Curso',
+            data: [@ViewBag.notaCurso]
+        }]
+    });
+
+</script>

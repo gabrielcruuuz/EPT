@@ -1,0 +1,58 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Meu Aplicativo ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @*@Scripts.Render("~/bundles/modernizr")*@
+
+    @Scripts.Render("~/BundlesJS")
+</head>
+<body>
+    <div class="container body-content container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="menu">
+                    <ul>
+                        @{
+                            int tipoPerfilUsuario = ((EPTEntity.Usuario)HttpContext.Current.Session["Usuario"]).tipoPerfil;
+                            if (tipoPerfilUsuario == 1)
+                            {
+                                <li><a href=@Url.Action("Index", "Home")>Home</a></li>
+                            }
+                            <li><a href="@Url.Action("Index", "Indicadores")">Indicadores</a></li>
+
+                            if (tipoPerfilUsuario == 1)
+                            {
+                                <li style="margin-left: 450px;"><a href='#'>@Session["UsuarioNome"] - <strong>Aluno</strong></a></li>
+                            }
+                            else if (tipoPerfilUsuario == 2)
+                            {
+                                <li style="margin-left: 450px;"><a href='#'>@Session["UsuarioNome"] - <strong>Professor</strong></a></li>
+                            }
+                            else if (tipoPerfilUsuario == 3)
+                            {
+                                <li style="margin-left: 450px;"><a href='#'>@Session["UsuarioNome"] - <strong>Coordenador</strong></a></li>
+                            }
+                        }
+                        <li>@Html.ActionLink("Sair", "Sair", "Login")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <a href="#"><img class="logoMenu" src="~/Content/imagens/logo-uam.png" /></a>
+
+
+
+        @RenderBody()
+    </div>
+
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

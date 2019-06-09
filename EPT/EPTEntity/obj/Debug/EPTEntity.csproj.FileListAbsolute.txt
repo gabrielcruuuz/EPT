@@ -1,0 +1,5 @@
+C:\Users\gabri\source\repos\EPT\EPTEntity\bin\Debug\EPTEntity.dll
+C:\Users\gabri\source\repos\EPT\EPTEntity\bin\Debug\EPTEntity.pdb
+C:\Users\gabri\source\repos\EPT\EPTEntity\obj\Debug\EPTEntity.csproj.CoreCompileInputs.cache
+C:\Users\gabri\source\repos\EPT\EPTEntity\obj\Debug\EPTEntity.dll
+C:\Users\gabri\source\repos\EPT\EPTEntity\obj\Debug\EPTEntity.pdb
