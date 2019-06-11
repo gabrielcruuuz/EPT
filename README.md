@@ -29,3 +29,7 @@ Perfil : Professor
 RA: 123456789
 senha: 123
 Perfil : Coordenador
+
+RA: 123456789123
+senha: 123
+Perfil : Diretor
